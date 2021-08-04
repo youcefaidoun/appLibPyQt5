@@ -1,0 +1,1 @@
+# appLibPyQt5
