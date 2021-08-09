@@ -324,7 +324,7 @@ class Window(QMainWindow, FORM_CLASS):
                     title,
                     category_id,
                     price
-            FROM books 
+            FROM books
         """)
         books = self.cur.fetchall()
         for row , book in enumerate(books):
@@ -418,9 +418,9 @@ class Window(QMainWindow, FORM_CLASS):
         self.lineEdit_10.clear()
         book_code = self.lineEdit_7.text()
         self.cur.execute("""
-            SELECT * 
+            SELECT *
             FROM books
-            WHERE code = ? 
+            WHERE code = ?
         """,(book_code,))
         data_book = self.cur.fetchone()
         if data_book != None:
@@ -529,7 +529,7 @@ class Window(QMainWindow, FORM_CLASS):
         try:
             if warning==QMessageBox.Yes:
                 self.cur.execute("""
-                            DELETE FROM books 
+                            DELETE FROM books
                             WHERE code = ?
                         """, (int(code_book),))
                 self.db.commit()
@@ -753,7 +753,7 @@ class Window(QMainWindow, FORM_CLASS):
                 mail = ?,
                 phone = ?,
                 national_id = ?
-            WHERE national_id = ? 
+            WHERE national_id = ?
         """,(name_client,
             mail_client,
             phone_client,
@@ -809,7 +809,7 @@ class Window(QMainWindow, FORM_CLASS):
         if warning==QMessageBox.Yes:
             try :
                 self.cur.execute("""
-                    DELETE FROM clients 
+                    DELETE FROM clients
                     WHERE national_id = ?
                 """,(int(national_id_client),))
                 self.db.commit()
@@ -941,7 +941,7 @@ class Window(QMainWindow, FORM_CLASS):
                                       date,
                                       publisher_id,
                                       author_id)
-                    values(?,?,?,?,?,?,?,?,?)  
+                    values(?,?,?,?,?,?,?,?,?)
                     """,(row_item[0],
                          row_item[1],
                          row_item[2],
@@ -1074,7 +1074,7 @@ class Window(QMainWindow, FORM_CLASS):
                                       phone,
                                       national_id,
                                       date)
-                    values(?,?,?,?,?)  
+                    values(?,?,?,?,?)
                     """,(row_item[0],
                          str(row_item[1]),
                          row_item[2],
@@ -1417,7 +1417,7 @@ class Window(QMainWindow, FORM_CLASS):
 
         if branch_code != "" and branch_name != "":
             self.cur.execute("""
-            select code 
+            select code
             from branch
             where code=?
             """,(int(branch_code),))
@@ -1426,7 +1426,7 @@ class Window(QMainWindow, FORM_CLASS):
                 self.cur.execute("""
                     INSERT INTO branch(name,
                                     code,
-                                    location) 
+                                    location)
                     VALUES (?,?,?)
                     """, (branch_name,
                           branch_code,
@@ -1494,7 +1494,7 @@ class Window(QMainWindow, FORM_CLASS):
         if category_name != "":
             if parent_category_Text=="":
                 self.cur.execute("""
-                            INSERT INTO category(category_name,parent_category) 
+                            INSERT INTO category(category_name,parent_category)
                             VALUES (?,?)
                             """, (category_name,0))
                 self.db.commit()
@@ -1507,7 +1507,7 @@ class Window(QMainWindow, FORM_CLASS):
                 id_parent_category_Text = self.cur.fetchone()
                 parent_category = id_parent_category_Text[0]
                 self.cur.execute("""
-                    INSERT INTO category(category_name,parent_category) 
+                    INSERT INTO category(category_name,parent_category)
                     VALUES (?,?)
                     """, (category_name,parent_category))
                 self.db.commit()
@@ -1572,7 +1572,7 @@ class Window(QMainWindow, FORM_CLASS):
         if publisher_name != "":
             self.cur.execute("""
                 INSERT INTO publisher(name,
-                                location) 
+                                location)
                 VALUES (?,?)
                 """, (publisher_name,
                       publisher_location))
@@ -1636,7 +1636,7 @@ class Window(QMainWindow, FORM_CLASS):
         if author_name != "":
             self.cur.execute("""
                 INSERT INTO author(name,
-                                location) 
+                                location)
                 VALUES (?,?)
                 """, (author_name,
                       author_location))
